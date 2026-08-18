@@ -9,9 +9,9 @@ toolbar = tk.Frame(window)
 
 
 def new_file():
-    #entry.delete(0, tk.END)
+    entry.delete(0, tk.END)
     label.config(text="Enter your name:")
-    #messagebox.showinfo("Clear", "Data cleared successfully")
+ 
     
 
 def save_file():

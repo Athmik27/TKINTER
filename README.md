@@ -1,34 +1,8 @@
- What is Tkinter?
+#  Tkinter Module 
 
-**Tkinter** is Python's built-in library for creating **GUI (Graphical User Interface)** applications.
+Tkinter is Python's **standard GUI library** used to create desktop applications with graphical user interfaces.
 
-GUI means applications that have:
-
-* Windows
-* Buttons
-* Labels
-* Text boxes
-* Menus
-* Checkboxes
-* Input fields
-
-Examples of GUI applications:
-
-* Calculator
-* Login Form
-* Registration Form
-* To-Do List
-* Simple Games
-* Student Management System
-
----
-
-
-Tkinter usually comes with Python, so you normally don't need to install it separately.
-
-
-
-A commonly used import is:
+GUI means **Graphical User Interface**.
 
 ```python
 import tkinter as tk
@@ -36,404 +10,26 @@ import tkinter as tk
 
 ---
 
-# 🪟 Creating a Window
-
-The first step in a Tkinter application is creating the main window.
-
-### Syntax
+## 1. Create Main Window
 
 ```python
 import tkinter as tk
 
 root = tk.Tk()
-
-root.mainloop()
-```
-
-### Explanation
-
-* `tk.Tk()` → creates the main window
-* `root` → variable containing the window
-* `mainloop()` → keeps the window running
-
----
-
-# 🏷️ Label
-
-A **Label** is used to display text.
-
-```python
-import tkinter as tk
-
-root = tk.Tk()
-
-label = tk.Label(root, text="Hello World")
-
-label.pack()
 
 root.mainloop()
 ```
 
 ### Important
 
-```python
-tk.Label(root, text="Hello World")
-```
-
-* `root` → parent window
-* `text` → text displayed on the label
-
----
-
-# 🔘 Button
-
-A **Button** allows the user to perform an action.
-
-```python
-import tkinter as tk
-
-root = tk.Tk()
-
-def hello():
-    print("Hello!")
-
-button = tk.Button(root, text="Click Me", command=hello)
-
-button.pack()
-
-root.mainloop()
-```
-
-### `command`
-
-```python
-command=hello
-```
-
-This tells Tkinter:
-
-> Run the `hello()` function when the button is clicked.
-
-### ⚠️ Common mistake
-
-Don't write:
-
-```python
-command=hello()
-```
-
-Use:
-
-```python
-command=hello
-```
-
----
-
-# 📝 Entry
-
-An **Entry** is used to take input from the user.
-
-```python
-import tkinter as tk
-
-root = tk.Tk()
-
-entry = tk.Entry(root)
-
-entry.pack()
-
-root.mainloop()
-```
-
-### Getting the entered value
-
-```python
-name = entry.get()
-
-print(name)
-```
-
----
-
-# 📦 Frame
-
-A **Frame** is a container used to organize widgets.
-
-```python
-frame = tk.Frame(root)
-
-frame.pack()
-```
-
-You can place widgets inside the frame:
-
-```python
-label = tk.Label(frame, text="Hello")
-
-label.pack()
-```
-
----
-
-# 📐 Geometry Managers
-
-Tkinter provides three main ways to position widgets.
-
-## 1. `pack()`
-
-Simple and commonly used.
-
-```python
-label.pack()
-```
-
-You can specify a direction:
-
-```python
-label.pack(side="left")
-```
-
----
-
-## 2. `grid()`
-
-Places widgets in rows and columns.
-
-```python
-label.grid(row=0, column=0)
-
-entry.grid(row=0, column=1)
-```
-
-Example:
-
 ```text
-        Column 0       Column 1
-
-Row 0   Name:          [       ]
-
-Row 1   Age:           [       ]
+tk.Tk()       → Creates the main window
+mainloop()    → Keeps the window running
 ```
 
 ---
 
-## 3. `place()`
-
-Places widgets using exact coordinates.
-
-```python
-label.place(x=50, y=100)
-```
-
-### ⚠️ Important
-
-Avoid mixing `pack()` and `grid()` inside the **same parent/container**.
-
----
-
-# 🎨 Changing Widget Appearance
-
-You can change the appearance of widgets.
-
-```python
-label = tk.Label(
-    root,
-    text="Hello",
-    bg="blue",
-    fg="white",
-    font=("Arial", 20)
-)
-
-label.pack()
-```
-
-Common options:
-
-| Option   | Meaning             |
-| -------- | ------------------- |
-| `text`   | Text displayed      |
-| `bg`     | Background color    |
-| `fg`     | Text color          |
-| `font`   | Font style and size |
-| `width`  | Width               |
-| `height` | Height              |
-| `padx`   | Horizontal padding  |
-| `pady`   | Vertical padding    |
-
----
-
-# 🖱️ Button Example
-
-```python
-button = tk.Button(
-    root,
-    text="Click Me",
-    bg="green",
-    fg="white",
-    font=("Arial", 15)
-)
-
-button.pack()
-```
-
----
-
-# 🔢 Simple Calculator Example
-
-```python
-import tkinter as tk
-
-root = tk.Tk()
-
-root.title("Calculator")
-
-entry = tk.Entry(root)
-
-entry.pack()
-
-
-def add():
-    num1 = int(entry.get())
-    print(num1 + 10)
-
-
-button = tk.Button(
-    root,
-    text="Add 10",
-    command=add
-)
-
-button.pack()
-
-root.mainloop()
-```
-
----
-
-# 💬 Message Box
-
-Tkinter provides message boxes for displaying messages.
-
-```python
-from tkinter import messagebox
-```
-
-Example:
-
-```python
-messagebox.showinfo("Message", "Hello!")
-```
-
-Other useful message boxes:
-
-```python
-messagebox.showinfo()
-messagebox.showwarning()
-messagebox.showerror()
-messagebox.askyesno()
-```
-
-Example:
-
-```python
-from tkinter import messagebox
-
-messagebox.showerror(
-    "Error",
-    "Something went wrong!"
-)
-```
-
----
-
-# 📝 Text Widget
-
-`Text` is used when you need a larger text area.
-
-```python
-text = tk.Text(root)
-
-text.pack()
-```
-
-Getting text:
-
-```python
-data = text.get("1.0", tk.END)
-
-print(data)
-```
-
----
-
-# ☑️ Checkbutton
-
-Used for selecting or unselecting an option.
-
-```python
-check = tk.Checkbutton(
-    root,
-    text="I agree"
-)
-
-check.pack()
-```
-
----
-
-# 🔘 Radiobutton
-
-Used when the user should select **one option** from multiple choices.
-
-```python
-choice = tk.StringVar()
-
-radio1 = tk.Radiobutton(
-    root,
-    text="Male",
-    variable=choice,
-    value="Male"
-)
-
-radio2 = tk.Radiobutton(
-    root,
-    text="Female",
-    variable=choice,
-    value="Female"
-)
-
-radio1.pack()
-radio2.pack()
-```
-
-Get the selected value:
-
-```python
-print(choice.get())
-```
-
----
-
-# 📋 Listbox
-
-Used to display a list of items.
-
-```python
-listbox = tk.Listbox(root)
-
-listbox.pack()
-
-listbox.insert(1, "Python")
-listbox.insert(2, "Java")
-listbox.insert(3, "C")
-```
-
----
-
-# 🏷️ Window Title
-
-Change the window title:
+## 2. Window Title
 
 ```python
 root.title("My Application")
@@ -441,9 +37,7 @@ root.title("My Application")
 
 ---
 
-# 📏 Window Size
-
-Set the window size:
+## 3. Window Size
 
 ```python
 root.geometry("500x400")
@@ -457,88 +51,574 @@ width x height
 
 Example:
 
-```python
-root.geometry("800x600")
+```text
+500x400
 ```
 
 ---
 
-# ❌ Closing the Window
-
-You can close the application using:
+## 4. Window Background
 
 ```python
-root.destroy()
+root.configure(
+    bg="lightblue"
+)
+```
+
+---
+
+## 5. Label
+
+A Label is used to **display text or information**.
+
+```python
+label = tk.Label(
+    root,
+    text="Hello World"
+)
+
+label.pack()
+```
+
+---
+
+## 6. Button
+
+A Button is used to **perform an action when clicked**.
+
+```python
+def hello():
+    print("Button clicked")
+
+button = tk.Button(
+    root,
+    text="Click Me",
+    command=hello
+)
+
+button.pack()
+```
+
+### `command`
+
+```python
+command=hello
+```
+
+Connects the button to a function.
+
+Do not use:
+
+```python
+command=hello()
+```
+
+because that calls the function immediately.
+
+---
+
+## 7. Entry
+
+Entry is used to **take input from the user**.
+
+```python
+entry = tk.Entry(root)
+
+entry.pack()
+```
+
+Get the entered value:
+
+```python
+value = entry.get()
+
+print(value)
+```
+
+---
+
+## 8. Text
+
+Text widget is used for **multi-line text input**.
+
+```python
+text = tk.Text(
+    root,
+    height=5,
+    width=30
+)
+
+text.pack()
+```
+
+Get text:
+
+```python
+value = text.get(
+    "1.0",
+    tk.END
+)
+```
+
+---
+
+## 9. Checkbutton
+
+Used when the user can select or deselect an option.
+
+```python
+check_var = tk.BooleanVar()
+
+check = tk.Checkbutton(
+    root,
+    text="I Agree",
+    variable=check_var
+)
+
+check.pack()
+```
+
+Get the value:
+
+```python
+print(check_var.get())
+```
+
+---
+
+## 10. Radio Button
+
+Used when the user must select **one option from multiple choices**.
+
+```python
+gender = tk.StringVar()
+
+tk.Radiobutton(
+    root,
+    text="Male",
+    variable=gender,
+    value="Male"
+).pack()
+
+tk.Radiobutton(
+    root,
+    text="Female",
+    variable=gender,
+    value="Female"
+).pack()
+```
+
+Get selected value:
+
+```python
+print(gender.get())
+```
+
+---
+
+## 11. Listbox
+
+Used to display a **list of selectable items**.
+
+```python
+listbox = tk.Listbox(root)
+
+listbox.insert(
+    tk.END,
+    "Python"
+)
+
+listbox.insert(
+    tk.END,
+    "Java"
+)
+
+listbox.pack()
+```
+
+Get selected item:
+
+```python
+selected = listbox.get(
+    listbox.curselection()
+)
+
+print(selected)
+```
+
+---
+
+## 12. Frame
+
+A Frame is used to **group widgets together**.
+
+```python
+frame = tk.Frame(
+    root,
+    bg="lightblue"
+)
+
+frame.pack()
 ```
 
 Example:
 
 ```python
-def close_window():
-    root.destroy()
+label = tk.Label(
+    frame,
+    text="Hello"
+)
+
+label.pack()
 ```
 
 ---
 
-# 🔄 Tkinter Program Structure
+## 13. Message
 
-A basic Tkinter application generally follows this structure:
+Used to display **multi-line text**.
 
 ```python
-import tkinter as tk
+message = tk.Message(
+    root,
+    text="Welcome to Tkinter"
+)
 
-# Create window
-root = tk.Tk()
-
-# Create widgets
-label = tk.Label(root, text="Hello")
-button = tk.Button(root, text="Click")
-
-# Position widgets
-label.pack()
-button.pack()
-
-# Run application
-root.mainloop()
+message.pack()
 ```
 
-Remember this flow:
+---
+
+## 14. Messagebox
+
+Used to display popup messages.
+
+```python
+from tkinter import messagebox
+```
+
+Information:
+
+```python
+messagebox.showinfo(
+    "Information",
+    "Operation successful"
+)
+```
+
+Warning:
+
+```python
+messagebox.showwarning(
+    "Warning",
+    "Check your input"
+)
+```
+
+Error:
+
+```python
+messagebox.showerror(
+    "Error",
+    "Something went wrong"
+)
+```
+
+Question:
+
+```python
+messagebox.askyesno(
+    "Question",
+    "Do you want to continue?"
+)
+```
+
+---
+
+## 15. Geometry Managers
+
+Tkinter provides three main geometry managers:
 
 ```text
-Import Tkinter
-      ↓
-Create Window
-      ↓
-Create Widgets
-      ↓
-Position Widgets
-      ↓
-Add Functions
-      ↓
-mainloop()
+pack()
+grid()
+place()
 ```
 
 ---
 
-# 🧠 Important Tkinter Widgets
+## 16. `pack()`
 
-| Widget        | Purpose                 |
-| ------------- | ----------------------- |
-| `Tk()`        | Creates main window     |
-| `Label`       | Displays text           |
-| `Button`      | Performs an action      |
-| `Entry`       | Takes single-line input |
-| `Text`        | Takes multi-line input  |
-| `Frame`       | Organizes widgets       |
-| `Checkbutton` | Checkbox                |
-| `Radiobutton` | Select one option       |
-| `Listbox`     | Displays a list         |
-| `Scale`       | Slider                  |
-| `Spinbox`     | Select a value          |
+Arranges widgets automatically.
+
+```python
+label.pack()
+```
+
+With options:
+
+```python
+label.pack(
+    padx=20,
+    pady=10
+)
+```
 
 ---
 
-# 🔥 Mini Login Form
+## 17. `grid()`
+
+Arranges widgets in **rows and columns**.
+
+```python
+label.grid(
+    row=0,
+    column=0
+)
+
+entry.grid(
+    row=0,
+    column=1
+)
+```
+
+Example:
+
+```python
+tk.Label(
+    root,
+    text="Name"
+).grid(row=0, column=0)
+
+tk.Entry(
+    root
+).grid(row=0, column=1)
+```
+
+---
+
+## 18. `place()`
+
+Positions widgets using exact coordinates.
+
+```python
+button.place(
+    x=100,
+    y=150
+)
+```
+
+---
+
+## 19. Important Geometry Parameters
+
+### `padx`
+
+Adds horizontal space.
+
+```python
+button.pack(
+    padx=20
+)
+```
+
+### `pady`
+
+Adds vertical space.
+
+```python
+button.pack(
+    pady=20
+)
+```
+
+### `ipadx`
+
+Adds internal horizontal space.
+
+### `ipady`
+
+Adds internal vertical space.
+
+---
+
+## 20. Widget Properties
+
+Common properties:
+
+```python
+button = tk.Button(
+    root,
+    text="Click",
+    bg="blue",
+    fg="white",
+    font=("Arial", 14),
+    width=15,
+    height=2
+)
+```
+
+Common options:
+
+```text
+text
+bg
+fg
+font
+width
+height
+state
+anchor
+padx
+pady
+```
+
+---
+
+## 21. Disable Button
+
+```python
+button = tk.Button(
+    root,
+    text="Disabled",
+    state="disabled"
+)
+```
+
+Enable later:
+
+```python
+button.config(
+    state="normal"
+)
+```
+
+---
+
+## 22. Change Widget Properties
+
+Use `config()`:
+
+```python
+label.config(
+    text="New Text"
+)
+```
+
+Example:
+
+```python
+button.config(
+    text="Updated"
+)
+```
+
+---
+
+## 23. Destroy Widget
+
+Remove a widget:
+
+```python
+button.destroy()
+```
+
+Close the main window:
+
+```python
+root.destroy()
+```
+
+---
+
+## 24. Tkinter Variables
+
+Tkinter provides special variable classes:
+
+```text
+StringVar()
+IntVar()
+DoubleVar()
+BooleanVar()
+```
+
+Example:
+
+```python
+name = tk.StringVar()
+
+entry = tk.Entry(
+    root,
+    textvariable=name
+)
+
+entry.pack()
+```
+
+Get value:
+
+```python
+print(name.get())
+```
+
+Set value:
+
+```python
+name.set("Athmik")
+```
+
+---
+
+## 25. Event Handling
+
+Tkinter can respond to events such as:
+
+* Mouse click
+* Keyboard press
+* Mouse movement
+
+Example:
+
+```python
+def clicked(event):
+    print("Mouse clicked")
+
+root.bind(
+    "<Button-1>",
+    clicked
+)
+```
+
+---
+
+## 26. Keyboard Event
+
+```python
+def key_pressed(event):
+    print(event.keysym)
+
+root.bind(
+    "<Key>",
+    key_pressed
+)
+```
+
+---
+
+## 27. Common Events
+
+```text
+<Button-1>   → Left mouse click
+<Button-2>   → Middle mouse click
+<Button-3>   → Right mouse click
+<Key>        → Keyboard key
+<Return>     → Enter key
+<Motion>     → Mouse movement
+```
+
+---
+
+## 28. Simple Login GUI
 
 ```python
 import tkinter as tk
@@ -547,28 +627,44 @@ from tkinter import messagebox
 root = tk.Tk()
 
 root.title("Login")
-root.geometry("300x200")
+root.geometry("400x300")
+
+tk.Label(
+    root,
+    text="Username"
+).pack()
+
+username = tk.Entry(root)
+username.pack()
+
+tk.Label(
+    root,
+    text="Password"
+).pack()
+
+password = tk.Entry(
+    root,
+    show="*"
+)
+
+password.pack()
 
 
 def login():
-    username = username_entry.get()
-    password = password_entry.get()
+    user = username.get()
+    pwd = password.get()
 
-    if username == "admin" and password == "1234":
-        messagebox.showinfo("Login", "Login Successful")
+    if user == "admin" and pwd == "1234":
+        messagebox.showinfo(
+            "Login",
+            "Login Successful"
+        )
     else:
-        messagebox.showerror("Login", "Invalid Username or Password")
+        messagebox.showerror(
+            "Login",
+            "Invalid Login"
+        )
 
-
-tk.Label(root, text="Username").pack()
-
-username_entry = tk.Entry(root)
-username_entry.pack()
-
-tk.Label(root, text="Password").pack()
-
-password_entry = tk.Entry(root, show="*")
-password_entry.pack()
 
 tk.Button(
     root,
@@ -581,122 +677,80 @@ root.mainloop()
 
 ---
 
-# ⚠️ Common Mistakes
+## 29. Important Tkinter Widgets
 
-### 1. Forgetting `mainloop()`
-
-Wrong:
-
-```python
-root = tk.Tk()
-```
-
-Correct:
-
-```python
-root = tk.Tk()
-root.mainloop()
-```
-
----
-
-### 2. Calling the function immediately
-
-Wrong:
-
-```python
-command=login()
-```
-
-Correct:
-
-```python
-command=login
-```
+| Widget        | Use                     |
+| ------------- | ----------------------- |
+| `Tk()`        | Main window             |
+| `Label`       | Display text            |
+| `Button`      | Perform action          |
+| `Entry`       | Single-line input       |
+| `Text`        | Multi-line input        |
+| `Checkbutton` | Select/deselect option  |
+| `Radiobutton` | Select one option       |
+| `Listbox`     | Display selectable list |
+| `Frame`       | Group widgets           |
+| `Message`     | Display multi-line text |
+| `Menu`        | Create menus            |
 
 ---
 
-### 3. Forgetting to position widgets
+## 30. Important Tkinter Functions
 
-Creating a widget is not enough.
+| Function      | Use                     |
+| ------------- | ----------------------- |
+| `Tk()`        | Create main window      |
+| `mainloop()`  | Run GUI event loop      |
+| `title()`     | Set window title        |
+| `geometry()`  | Set window size         |
+| `configure()` | Configure widget/window |
+| `pack()`      | Arrange widget          |
+| `grid()`      | Arrange in rows/columns |
+| `place()`     | Position widget         |
+| `get()`       | Get value               |
+| `set()`       | Set value               |
+| `config()`    | Modify widget           |
+| `destroy()`   | Remove widget           |
+| `bind()`      | Handle events           |
 
-```python
-label = tk.Label(root, text="Hello")
-```
+---
 
-You also need:
-
-```python
-label.pack()
-```
-
-or:
-
-```python
-label.grid(row=0, column=0)
-```
-
-
-
-
-# Quick Cheat Sheet
+#  CHEAT SHEET
 
 ```python
 import tkinter as tk
 from tkinter import messagebox
 
-# Window
 root = tk.Tk()
 
 root.title("My App")
 root.geometry("500x400")
 
-# Label
-label = tk.Label(root, text="Hello")
-
-# Button
-button = tk.Button(root, text="Click")
-
-# Entry
-entry = tk.Entry(root)
-
-# Text
-text = tk.Text(root)
-
-# Frame
-frame = tk.Frame(root)
-
-# Position
+label = tk.Label(
+    root,
+    text="Hello"
+)
 label.pack()
-button.pack()
+
+entry = tk.Entry(root)
 entry.pack()
 
-# Get Entry value
-value = entry.get()
+def click():
+    value = entry.get()
+    print(value)
 
-# Message box
-messagebox.showinfo("Title", "Message")
+button = tk.Button(
+    root,
+    text="Click",
+    command=click
+)
+button.pack()
 
-# Run
+messagebox.showinfo(
+    "Info",
+    "Hello"
+)
+
 root.mainloop()
 ```
-
----
-
-# 📚 Key Points to Remember
-
-* **Tkinter = Python GUI library**
-* `Tk()` creates the main window.
-* `Label` displays text.
-* `Button` performs an action.
-* `Entry` takes user input.
-* `Frame` organizes widgets.
-* `pack()`, `grid()`, and `place()` position widgets.
-* `command` connects a button to a function.
-* `mainloop()` keeps the application running.
-* `messagebox` displays popup messages.
-* `get()` retrieves user input.
-
----
-
 

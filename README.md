@@ -1,4 +1,4 @@
-#  Tkinter Module 
+#  Tkinters
 
 Tkinter is Python's **standard GUI library** used to create desktop applications with graphical user interfaces.
 
